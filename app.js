@@ -1,21 +1,23 @@
-import express from "express";
+import express from 'express'
 
-import path from "path";
+import path from 'path'
 
-import logger from "morgan";
+import logger from 'morgan'
 
-import usersRouter from "./app/routes/users.js";
+import usersRouter from './app/routes/users.js'
 
-const app = express();
+import './config/database.js'
 
-app.use(logger("dev"));
+const app = express()
 
-app.use(express.json());
+app.use(logger('dev'))
 
-app.use(express.urlencoded({ extended: false }));
+app.use(express.json())
 
-app.use(express.static(path.join(path.resolve(), "public")));
+app.use(express.urlencoded({ extended: false }))
 
-app.use("/users", usersRouter);
+app.use(express.static(path.join(path.resolve(), 'public')))
 
-export default app;
+app.use('/users', usersRouter)
+
+export default app
