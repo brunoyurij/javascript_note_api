@@ -1,10 +1,18 @@
-import express from "express";
+import express from 'express'
+import User from '../models/user.js'
 
-const router = express.Router();
+const router = express.Router()
 
-/* GET users listing. */
-router.get("/", (req, res) => {
-    res.send("respond with a resource");
-});
+router.post('/register', async (req, res) => {
+    const { name, email, password } = req.body
+    const user = new User({ name, email, password })
 
-export default router;
+    try {
+        await user.save()
+        res.status(200).json(user)
+    } catch (error) {
+        res.status(500).json({ error: 'Error registering new user' })
+    }
+})
+
+export default router
