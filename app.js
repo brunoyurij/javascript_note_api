@@ -6,6 +6,8 @@ import logger from 'morgan'
 
 import usersRouter from './app/routes/users.js'
 
+import notesRouter from './app/routes/notes.js'
+
 import './config/database.js'
 
 const app = express()
@@ -19,5 +21,7 @@ app.use(express.urlencoded({ extended: false }))
 app.use(express.static(path.join(path.resolve(), 'public')))
 
 app.use('/users', usersRouter)
+
+app.use('/notes', notesRouter)
 
 export default app
