@@ -25,6 +25,20 @@ const isOwner = (user, note) => {
     return false
 }
 
+router.get('/search', withAuth, async (req, res) => {
+    const { query } = req.query
+
+    try {
+        const notes = await Note.find({ author: req.user._id }).find({
+            $text: { $search: query },
+        })
+
+        res.status(200).json(notes)
+    } catch (error) {
+        res.json({ error }).status(500)
+    }
+})
+
 router.get('/:id', withAuth, async (req, res) => {
     try {
         const { id } = req.params
