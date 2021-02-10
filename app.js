@@ -4,6 +4,8 @@ import path from 'path'
 
 import logger from 'morgan'
 
+import cors from 'cors'
+
 import usersRouter from './app/routes/users.js'
 
 import notesRouter from './app/routes/notes.js'
@@ -15,6 +17,8 @@ const app = express()
 app.use(logger('dev'))
 
 app.use(express.json())
+
+app.use(cors())
 
 app.use(express.urlencoded({ extended: false }))
 
