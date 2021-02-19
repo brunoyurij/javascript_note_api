@@ -75,7 +75,7 @@ router.put('/:id', withAuth, async (req, res) => {
 
         if (isOwner(req.user, noteVerify)) {
             const note = await Note.findOneAndUpdate(
-                id,
+                { _id: id },
                 {
                     $set: { title, body },
                 },
