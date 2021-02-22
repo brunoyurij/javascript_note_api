@@ -2,7 +2,7 @@ import express from 'express'
 import jwt from 'jsonwebtoken'
 import dotenv from 'dotenv'
 import User from '../models/user.js'
-import withAuth from '../middlewares/auth'
+import withAuth from '../middlewares/auth.js'
 
 dotenv.config()
 
